@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Bushra Sabir is a Flutter developer in Islamabad, Pakistan, building responsive Android, iOS, web, desktop and AI-integrated applications.">
+  <title>Bushra Sabir | Flutter Developer</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-soft: #f8faff;
+      --text: #12213a;
+      --muted: #5f6e84;
+      --line: #e3e8f1;
+      --primary: #3457d5;
+      --primary-dark: #2443b7;
+      --primary-soft: #edf1ff;
+      --accent: #12a594;
+      --shadow: 0 14px 40px rgba(33, 49, 82, .08);
+      --radius: 22px;
+      --container: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--text); background: var(--bg); line-height: 1.65; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(calc(100% - 36px), var(--container)); margin-inline: auto; }
+    section { scroll-margin-top: 90px; }
+    :focus-visible { outline: 3px solid rgba(52,87,213,.35); outline-offset: 3px; border-radius: 8px; }
+
+    .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.92); border-bottom: 1px solid rgba(227,232,241,.9); backdrop-filter: blur(16px); }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 820; color: var(--text); letter-spacing: -.02em; }
+    .brand-mark { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--primary); color: white; font-size: .82rem; box-shadow: 0 8px 20px rgba(52,87,213,.22); }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a { padding: 9px 12px; border-radius: 10px; color: #4e5d73; font-weight: 680; font-size: .92rem; }
+    .nav-links a:hover { background: var(--primary-soft); color: var(--primary-dark); }
+    .nav-links .nav-cta { margin-left: 5px; color: white; background: var(--primary); }
+    .nav-links .nav-cta:hover { background: var(--primary-dark); color: white; }
+    .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 12px; background: white; color: var(--text); cursor: pointer; }
+
+    .hero { padding: 100px 0 82px; background: linear-gradient(180deg, #ffffff 0%, #f5f7fb 100%); border-bottom: 1px solid var(--line); }
+    .hero-inner { max-width: 900px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: var(--primary-soft); color: var(--primary-dark); font-size: .82rem; font-weight: 760; }
+    .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .hero h1 { margin: 22px 0 20px; max-width: 850px; font-size: clamp(2.8rem, 7vw, 5.6rem); line-height: 1.01; letter-spacing: -.06em; color: #0f1f38; text-wrap: balance; }
+    .hero h1 span { color: var(--primary); }
+    .hero-copy { max-width: 760px; margin: 0; color: var(--muted); font-size: clamp(1.03rem, 1.7vw, 1.18rem); line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 30px; }
+    .btn { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; padding: 0 19px; border: 1px solid transparent; border-radius: 12px; font-weight: 760; transition: transform .18s ease, background .18s ease, border-color .18s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: white; background: var(--primary); box-shadow: 0 12px 28px rgba(52,87,213,.22); }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary { color: var(--text); background: white; border-color: var(--line); }
+    .btn-secondary:hover { border-color: #c8d1e0; background: #fafbfe; }
+    .hero-points { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px; color: #68778b; font-size: .92rem; }
+    .hero-points span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-points span::before { content: "✓"; color: var(--accent); font-weight: 900; }
+
+    .section { padding: 88px 0; }
+    .section-white { background: white; }
+    .section-heading { max-width: 760px; margin-bottom: 34px; }
+    .section-label { display: block; margin-bottom: 10px; color: var(--primary); font-size: .78rem; font-weight: 850; text-transform: uppercase; letter-spacing: .13em; }
+    .section-title { margin: 0; font-size: clamp(2rem, 4.8vw, 3.7rem); line-height: 1.08; letter-spacing: -.045em; color: #10203a; text-wrap: balance; }
+    .section-copy { margin: 14px 0 0; color: var(--muted); max-width: 720px; }
+
+    .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; }
+    .panel { padding: 30px; background: white; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .panel h3 { margin: 0 0 11px; font-size: 1.3rem; letter-spacing: -.025em; }
+    .panel p { margin: 0; color: var(--muted); }
+    .simple-list { display: grid; gap: 11px; margin: 22px 0 0; padding: 0; list-style: none; }
+    .simple-list li { position: relative; padding-left: 27px; color: #46566d; }
+    .simple-list li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 900; }
+    .profile-lines { display: grid; gap: 0; margin-top: 18px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    .profile-line { display: flex; justify-content: space-between; gap: 20px; padding: 13px 15px; background: var(--surface-soft); border-bottom: 1px solid var(--line); }
+    .profile-line:last-child { border-bottom: 0; }
+    .profile-line span { color: var(--muted); }
+    .profile-line strong { text-align: right; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .skill-card { padding: 25px; border: 1px solid var(--line); border-radius: 18px; background: white; box-shadow: 0 10px 28px rgba(33,49,82,.05); }
+    .skill-icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px; background: var(--primary-soft); color: var(--primary); font-weight: 850; }
+    .skill-card h3 { margin: 17px 0 8px; font-size: 1.16rem; }
+    .skill-card p { margin: 0; color: var(--muted); font-size: .94rem; }
+    .skill-tags, .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+    .skill-tags span, .project-tags span { padding: 6px 9px; border-radius: 999px; background: #f2f5fa; border: 1px solid #e4e9f1; color: #435269; font-size: .76rem; font-weight: 700; }
+
+    .experience-list { display: grid; gap: 14px; }
+    .experience-item { display: grid; grid-template-columns: 180px 1fr; gap: 28px; padding: 25px 0; border-top: 1px solid var(--line); }
+    .experience-item:last-child { border-bottom: 1px solid var(--line); }
+    .experience-date { color: var(--primary); font-size: .88rem; font-weight: 800; }
+    .experience-item h3 { margin: 0; font-size: 1.2rem; }
+    .experience-item h4 { margin: 3px 0 9px; color: #4e5d73; font-size: .94rem; }
+    .experience-item p { margin: 0; color: var(--muted); }
+
+    .projects-list { display: grid; gap: 26px; }
+    .project-card { overflow: hidden; background: white; border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); }
+    .project-info { padding: 30px 30px 24px; }
+    .project-title-row { display: flex; align-items: center; gap: 14px; }
+    .project-logo { width: 50px; height: 50px; flex: 0 0 50px; object-fit: contain; padding: 7px; border: 1px solid var(--line); border-radius: 14px; background: #10192a; }
+    .project-logo-symbol { display: grid; place-items: center; padding: 0; background: var(--primary); color: white; font-size: 1.25rem; }
+    .project-type { color: var(--primary); font-size: .77rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+    .project-info h3 { margin: 2px 0 0; color: #10203a; font-size: clamp(1.55rem, 3vw, 2.1rem); line-height: 1.15; letter-spacing: -.035em; }
+    .project-info > p { max-width: 820px; margin: 16px 0 0; color: var(--muted); line-height: 1.75; }
+    .project-footer { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-top: 18px; }
+    .project-tags { margin-top: 0; }
+    .text-link { flex: 0 0 auto; color: var(--primary); font-size: .9rem; font-weight: 800; }
+    .text-link:hover { color: var(--primary-dark); text-decoration: underline; text-underline-offset: 4px; }
+    .project-gallery { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; padding: 18px; background: #f6f8fc; border-top: 1px solid var(--line); }
+    .shot { margin: 0; overflow: hidden; border: 1px solid #dfe5ee; border-radius: 15px; background: white; }
+    .shot-button { width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+    .shot-media { display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; padding: 12px; background: #f7f9fc; }
+    .shot img { width: 100%; height: 100%; object-fit: contain; transition: transform .22s ease; }
+    .shot:hover img { transform: scale(1.025); }
+
+    .contact-card { display: flex; align-items: center; justify-content: space-between; gap: 35px; padding: 38px; border-radius: 24px; background: #10203a; color: white; }
+    .contact-card h2 { margin: 9px 0 10px; max-width: 670px; font-size: clamp(2rem,4.5vw,3.4rem); line-height: 1.08; letter-spacing: -.045em; }
+    .contact-card p { margin: 0; max-width: 650px; color: #bec9d9; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 18px; color: #dce6f5; font-weight: 700; font-size: .92rem; }
+    .contact-card .btn-secondary { border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.07); color: white; }
+    .contact-actions { display: flex; flex-direction: column; gap: 10px; flex: 0 0 210px; }
+
+    footer { padding: 26px 0; background: white; border-top: 1px solid var(--line); }
+    .footer-row { display: flex; justify-content: space-between; gap: 24px; color: #6a788b; font-size: .88rem; }
+
+    dialog { width: min(94vw, 1180px); max-height: 92vh; padding: 0; border: 0; border-radius: 18px; background: #0b1220; box-shadow: 0 30px 100px rgba(0,0,0,.42); }
+    dialog::backdrop { background: rgba(8,15,28,.78); backdrop-filter: blur(8px); }
+    .lightbox-inner { position: relative; display: grid; place-items: center; min-height: 300px; padding: 46px 20px 20px; }
+    .lightbox-image { max-height: 80vh; width: auto; object-fit: contain; border-radius: 10px; }
+    .lightbox-close { position: absolute; top: 10px; right: 10px; width: 38px; height: 38px; border: 0; border-radius: 10px; background: rgba(255,255,255,.1); color: white; cursor: pointer; }
+
+    @media (max-width: 900px) {
+      .skills-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .about-grid { grid-template-columns: 1fr; }
+      .project-gallery { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .contact-card { align-items: flex-start; flex-direction: column; }
+      .contact-actions { width: 100%; flex-basis: auto; flex-direction: row; }
+    }
+    @media (max-width: 720px) {
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-links { position: absolute; top: 72px; left: 18px; right: 18px; display: none; flex-direction: column; align-items: stretch; padding: 10px; background: white; border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; }
+      .nav-links .nav-cta { margin-left: 0; text-align: center; }
+      .hero { padding: 74px 0 62px; }
+      .section { padding: 68px 0; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .experience-item { grid-template-columns: 1fr; gap: 7px; }
+      .project-info { padding: 24px 20px 20px; }
+      .project-footer { align-items: flex-start; flex-direction: column; }
+      .project-gallery { grid-template-columns: 1fr; padding: 12px; }
+      .contact-card { padding: 26px 22px; }
+      .contact-actions { flex-direction: column; }
+      .footer-row { flex-direction: column; gap: 7px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *,*::before,*::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Bushra Sabir home"><span class="brand-mark" aria-hidden="true">BS</span><span>Bushra Sabir</span></a>
+      <button class="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Open navigation">☰</button>
+      <nav class="nav-links" id="main-nav" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a class="nav-cta" href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="container hero-inner">
+        <div class="eyebrow">Flutter Developer · Islamabad, Pakistan</div>
+        <h1>I build reliable <span>Flutter applications</span> with clean, responsive experiences.</h1>
+        <p class="hero-copy">I’m Bushra Sabir, a Flutter Developer with 3 years of hands-on experience across mobile, web and desktop. I work with modern UI, clean architecture, Firebase, REST APIs, AI features, payments, subscriptions and production deployment.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#projects">View my work</a><a class="btn btn-secondary" href="mailto:bushrasabir792@gmail.com">Email me</a></div>
+        <div class="hero-points"><span>Android, iOS, web and desktop</span><span>Firebase and REST APIs</span><span>Store-ready delivery</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading"><span class="section-label">About me</span><h2 class="section-title">Focused on useful products and maintainable code.</h2><p class="section-copy">I turn product ideas and UI designs into complete Flutter experiences, including authentication, dashboards, maps, notifications, subscriptions and release preparation.</p></div>
+        <div class="about-grid">
+          <article class="panel"><h3>How I work</h3><p>I combine strong UI implementation with practical architecture and backend integration, keeping applications responsive, stable and easy to extend.</p><ul class="simple-list"><li>Reusable components and responsive layouts</li><li>Clean Architecture, MVC and Repository Pattern</li><li>Careful loading, validation and error handling</li><li>Testing, versioning, signing and deployment support</li></ul></article>
+          <aside class="panel"><h3>Profile</h3><p>Bachelor in Software Engineering with professional Flutter experience across product teams.</p><div class="profile-lines"><div class="profile-line"><span>Location</span><strong>Islamabad, Pakistan</strong></div><div class="profile-line"><span>Primary focus</span><strong>Flutter Development</strong></div><div class="profile-line"><span>Platforms</span><strong>Android, iOS, Web, Desktop</strong></div><div class="profile-line"><span>Email</span><strong><a href="mailto:bushrasabir792@gmail.com">bushrasabir792@gmail.com</a></strong></div></div></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="skills">
+      <div class="container">
+        <div class="section-heading"><span class="section-label">Skills</span><h2 class="section-title">Technologies I use to deliver complete applications.</h2><p class="section-copy">A clear overview of my main Flutter, backend, AI, monetization and deployment capabilities.</p></div>
+        <div class="skills-grid">
+          <article class="skill-card"><div class="skill-icon">FD</div><h3>Flutter &amp; Dart</h3><p>Responsive cross-platform interfaces for Android, iOS, web and desktop with reusable widgets and animations.</p><div class="skill-tags"><span>Android</span><span>iOS</span><span>Web</span><span>Desktop</span><span>Dart</span><span>Responsive UI</span></div></article>
+          <article class="skill-card"><div class="skill-icon">AR</div><h3>Architecture &amp; State</h3><p>Maintainable structures and predictable application state.</p><div class="skill-tags"><span>Clean Architecture</span><span>MVC</span><span>Repository</span><span>GetX</span><span>BLoC</span><span>Provider</span></div></article>
+          <article class="skill-card"><div class="skill-icon">AI</div><h3>AI Integration</h3><p>Assistants, smart chat flows and AI/API-powered product features.</p><div class="skill-tags"><span>AI Assistants</span><span>Chat Flows</span><span>AI APIs</span><span>Smart Features</span></div></article>
+          <article class="skill-card"><div class="skill-icon">BE</div><h3>Backend &amp; Firebase</h3><p>Authentication, data, notifications and reliable API communication.</p><div class="skill-tags"><span>REST APIs</span><span>Firebase Auth</span><span>Firestore</span><span>Storage</span><span>FCM</span><span>Crashlytics</span></div></article>
+          <article class="skill-card"><div class="skill-icon">PM</div><h3>Payments &amp; Subscriptions</h3><p>Monetization flows for payments, trials, renewals and entitlements.</p><div class="skill-tags"><span>Stripe</span><span>Checkout</span><span>Webhooks</span><span>RevenueCat</span><span>In-App Purchases</span></div></article>
+          <article class="skill-card"><div class="skill-icon">CD</div><h3>Deployment &amp; Collaboration</h3><p>Store releases, CI/CD pipelines and modern team workflows.</p><div class="skill-tags"><span>Play Console</span><span>App Store Connect</span><span>TestFlight</span><span>Codemagic</span><span>Fastlane</span><span>GitHub Actions</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-heading"><span class="section-label">Experience</span><h2 class="section-title">Professional Flutter development experience.</h2><p class="section-copy">Recent roles where I contributed to real-world mobile, web and desktop products.</p></div>
+        <div class="experience-list">
+          <article class="experience-item"><div class="experience-date">Oct 2025 – July 2026</div><div><h3>Flutter Developer</h3><h4>Shafique Services Ltd.</h4><p>Developed cross-platform apps with clean architecture, AI integrations, APIs, Stripe, RevenueCat, responsive UI and automated release workflows.</p></div></article>
+          <article class="experience-item"><div class="experience-date">Feb 2025 – Aug 2025</div><div><h3>Flutter Developer</h3><h4>Aridian Technologies</h4><p>Built reusable screens and responsive layouts, integrated Firebase and REST APIs, and supported testing, debugging and performance improvements.</p></div></article>
+          <article class="experience-item"><div class="experience-date">Jan 2024 – Jan 2025</div><div><h3>Flutter Developer</h3><h4>Alright Technologies</h4><p>Delivered mobile and web interfaces, Firebase services, notifications, payment modules and collaborative Git workflows.</p></div></article>
+          <article class="experience-item"><div class="experience-date">Summer 2023</div><div><h3>Flutter Intern</h3><h4>FFC Pvt Ltd</h4><p>Supported Flutter UI implementation, debugging and testing while translating wireframes into functional screens.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="projects">
+      <div class="container">
+        <div class="section-heading"><span class="section-label">Selected work</span><h2 class="section-title">Projects presented simply and clearly.</h2><p class="section-copy">Each project includes a short overview, the main technologies and consistent screenshots. Select any image to view it at full size.</p></div>
+        <div class="projects-list"><article class="project-card">
+      <div class="project-info">
+        <div class="project-title-row"><img class="project-logo" src="assets/family_law/logo.png" alt="Family Law App logo"><div><span class="project-type">Mobile Application</span><h3>Family Law App</h3></div></div>
+        <p>A legal guidance application for family law users in Australia. It helps people start a legal matter, calculate deadlines, find courts, access educational content and receive guided support through an AI assistant.</p>
+        <div class="project-footer"><div class="project-tags"><span>Flutter</span><span>Firebase</span><span>Maps</span><span>AI Assistant</span><span>Subscriptions</span></div></div>
+      </div>
+      <div class="project-gallery"><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/welcome.png">
+            <span class="shot-media"><img src="assets/family_law/welcome.png" alt="Family Law welcome screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/home_tools.png">
+            <span class="shot-media"><img src="assets/family_law/home_tools.png" alt="Family Law tools screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/matter_selection.png">
+            <span class="shot-media"><img src="assets/family_law/matter_selection.png" alt="Matter selection screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/deadline.png">
+            <span class="shot-media"><img src="assets/family_law/deadline.png" alt="Deadline reminder screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/court_finder.png">
+            <span class="shot-media"><img src="assets/family_law/court_finder.png" alt="Court finder map screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/subscription_overview.png">
+            <span class="shot-media"><img src="assets/family_law/subscription_overview.png" alt="Subscription plans screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure></div>
+    </article>
+<article class="project-card">
+      <div class="project-info">
+        <div class="project-title-row"><img class="project-logo" src="assets/family_law/logo.png" alt="Family Law Admin Panel logo"><div><span class="project-type">Admin Dashboard</span><h3>Family Law Admin Panel</h3></div></div>
+        <p>A web administration system for managing users, templates, videos, legal questions, hearings, pricing and business metrics across the Family Law platform.</p>
+        <div class="project-footer"><div class="project-tags"><span>Web Admin</span><span>Analytics</span><span>Content Management</span><span>Pricing</span></div><a class="text-link" href="https://family-law-a8131.web.app/minified:tD" target="_blank" rel="noopener">Open Admin Panel ↗</a></div>
+      </div>
+      <div class="project-gallery"><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/web_login.png">
+            <span class="shot-media"><img src="assets/family_law/web_login.png" alt="Family Law admin login" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/admin_dashboard.png">
+            <span class="shot-media"><img src="assets/family_law/admin_dashboard.png" alt="Family Law admin dashboard" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/admin_templates.png">
+            <span class="shot-media"><img src="assets/family_law/admin_templates.png" alt="Templates and forms" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/admin_questions.png">
+            <span class="shot-media"><img src="assets/family_law/admin_questions.png" alt="User questions" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/admin_video_library.png">
+            <span class="shot-media"><img src="assets/family_law/admin_video_library.png" alt="Video library" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/family_law/admin_pricing.png">
+            <span class="shot-media"><img src="assets/family_law/admin_pricing.png" alt="Pricing page" loading="lazy" decoding="async"></span>
+          </button>
+        </figure></div>
+    </article>
+<article class="project-card">
+      <div class="project-info">
+        <div class="project-title-row"><img class="project-logo" src="assets/opeec/logo.webp" alt="OPEEC logo"><div><span class="project-type">Mobile Application</span><h3>OPEEC</h3></div></div>
+        <p>An equipment rental and finance application supporting discovery, listings, map-based filtering, wallet flows, rental requests and admin-connected operations.</p>
+        <div class="project-footer"><div class="project-tags"><span>Flutter</span><span>REST APIs</span><span>Maps</span><span>Wallet</span><span>Rental Workflows</span></div></div>
+      </div>
+      <div class="project-gallery"><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/opeec/splash.png">
+            <span class="shot-media"><img src="assets/opeec/splash.png" alt="OPEEC splash screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/opeec/auth_overview.png">
+            <span class="shot-media"><img src="assets/opeec/auth_overview.png" alt="OPEEC authentication flow" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/opeec/equipment_list.png">
+            <span class="shot-media"><img src="assets/opeec/equipment_list.png" alt="OPEEC equipment listing" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/opeec/map_filter.png">
+            <span class="shot-media"><img src="assets/opeec/map_filter.png" alt="OPEEC map and filter" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/opeec/wallet.png">
+            <span class="shot-media"><img src="assets/opeec/wallet.png" alt="OPEEC wallet screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/opeec/rental_request.png">
+            <span class="shot-media"><img src="assets/opeec/rental_request.png" alt="OPEEC rental request" loading="lazy" decoding="async"></span>
+          </button>
+        </figure></div>
+    </article>
+<article class="project-card">
+      <div class="project-info">
+        <div class="project-title-row"><img class="project-logo" src="assets/suit_up/logo.png" alt="Suit Up logo"><div><span class="project-type">Mobile Application</span><h3>Suit Up</h3></div></div>
+        <p>A mobile experience for browsing formal wear and tuxedo rentals for weddings, prom and special events, with a simple app-friendly path to the Suit Up catalogue and services.</p>
+        <div class="project-footer"><div class="project-tags"><span>Flutter</span><span>Menswear</span><span>Android</span><span>Notifications</span></div><a class="text-link" href="https://play.google.com/store/apps/details?id=com.base6938f554f816d7cc3555019c.app" target="_blank" rel="noopener">View on Google Play ↗</a></div>
+      </div>
+      <div class="project-gallery"><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/suit_up/welcome.png">
+            <span class="shot-media"><img src="assets/suit_up/welcome.png" alt="Suit Up welcome screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/suit_up/collection.png">
+            <span class="shot-media"><img src="assets/suit_up/collection.png" alt="Suit Up collection screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/suit_up/home.png">
+            <span class="shot-media"><img src="assets/suit_up/home.png" alt="Suit Up home screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure></div>
+    </article>
+<article class="project-card">
+      <div class="project-info">
+        <div class="project-title-row"><div class="project-logo project-logo-symbol" aria-hidden="true">★</div><div><span class="project-type">Mobile Application</span><h3>Kids Habit Builder</h3></div></div>
+        <p>A child-friendly habit and routine application with weekday and weekend plans, daily and weekly star goals, achievements, reward coins and premium subscription options.</p>
+        <div class="project-footer"><div class="project-tags"><span>Flutter UI</span><span>Social Sign-In</span><span>Habit Tracking</span><span>Subscriptions</span></div></div>
+      </div>
+      <div class="project-gallery"><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/kids_habit/sign_in.png">
+            <span class="shot-media"><img src="assets/kids_habit/sign_in.png" alt="Kids Habit Builder sign-in screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/kids_habit/home_goals.png">
+            <span class="shot-media"><img src="assets/kids_habit/home_goals.png" alt="Kids Habit Builder star goals" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/kids_habit/weekday_routines.png">
+            <span class="shot-media"><img src="assets/kids_habit/weekday_routines.png" alt="Kids Habit Builder weekday routines" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/kids_habit/premium.png">
+            <span class="shot-media"><img src="assets/kids_habit/premium.png" alt="Kids Habit Builder premium subscription" loading="lazy" decoding="async"></span>
+          </button>
+        </figure></div>
+    </article>
+<article class="project-card">
+      <div class="project-info">
+        <div class="project-title-row"><img class="project-logo" src="assets/kodago/logo.png" alt="KodaGO logo"><div><span class="project-type">Mobile Application</span><h3>KodaGO</h3></div></div>
+        <p>A ride-hailing platform connecting riders and drivers across Canada, with trip requests, real-time tracking, driver workflows and location-enabled transportation features.</p>
+        <div class="project-footer"><div class="project-tags"><span>Flutter</span><span>Ride Hailing</span><span>Maps</span><span>Real-Time Tracking</span><span>Rider + Driver</span></div><a class="text-link" href="https://play.google.com/store/apps/details?id=com.sha.kodago" target="_blank" rel="noopener">View on Google Play ↗</a></div>
+      </div>
+      <div class="project-gallery"><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/kodago/home.png">
+            <span class="shot-media"><img src="assets/kodago/home.png" alt="KodaGO home screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/kodago/local_rides.png">
+            <span class="shot-media"><img src="assets/kodago/local_rides.png" alt="KodaGO local rides screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/kodago/find_rides.png">
+            <span class="shot-media"><img src="assets/kodago/find_rides.png" alt="KodaGO ride search screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure><figure class="shot">
+          <button class="shot-button" type="button" data-full="assets/kodago/login.png">
+            <span class="shot-media"><img src="assets/kodago/login.png" alt="KodaGO login screen" loading="lazy" decoding="async"></span>
+          </button>
+        </figure></div>
+    </article></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-card"><div><span class="section-label" style="color:#91a7ff">Contact</span><h2>Have a Flutter product to build or improve?</h2><p>I can support Flutter UI development, Firebase and REST API integration, AI features, payments, subscriptions and release preparation.</p><div class="contact-links"><a href="mailto:bushrasabir792@gmail.com">bushrasabir792@gmail.com</a><a href="https://www.linkedin.com/in/bushra-sabir-300712395/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/BushraSabir758" target="_blank" rel="noopener">GitHub ↗</a></div></div><div class="contact-actions"><a class="btn btn-primary" href="mailto:bushrasabir792@gmail.com">Start a conversation</a></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-row"><span>© <span id="year"></span> Bushra Sabir. All rights reserved.</span><span>Flutter Developer · Mobile · Web · Desktop</span></div></footer>
+
+  <dialog id="lightbox" aria-label="Project screenshot preview"><div class="lightbox-inner"><button class="lightbox-close" type="button" aria-label="Close preview">✕</button><img class="lightbox-image" alt=""></div></dialog>
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav-links');
+    menuButton?.addEventListener('click', () => { const open = nav.classList.toggle('open'); menuButton.setAttribute('aria-expanded', String(open)); menuButton.textContent = open ? '✕' : '☰'; });
+    nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { nav.classList.remove('open'); menuButton?.setAttribute('aria-expanded','false'); if (menuButton) menuButton.textContent='☰'; }));
+    const lightbox=document.getElementById('lightbox'); const lightboxImage=lightbox?.querySelector('.lightbox-image');
+    document.querySelectorAll('.shot-button').forEach(button => button.addEventListener('click', () => { const src=button.dataset.full; const img=button.querySelector('img'); if(!src||!lightbox||!lightboxImage) return; lightboxImage.src=src; lightboxImage.alt=img?.alt||'Project screenshot'; lightbox.showModal(); }));
+    lightbox?.querySelector('.lightbox-close')?.addEventListener('click',()=>lightbox.close());
+    lightbox?.addEventListener('click',event=>{ if(event.target===lightbox) lightbox.close(); });
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
